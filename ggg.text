@@ -1,0 +1,163 @@
+PS C:\Users\SC9-406-35\Desktop\full_project> cd backend
+PS C:\Users\SC9-406-35\Desktop\full_project\backend> npm init -y
+Wrote to C:\Users\SC9-406-35\Desktop\full_project\backend\package.json:
+
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+
+
+PS C:\Users\SC9-406-35\Desktop\full_project\backend> npm i nodemon
+
+added 29 packages, and audited 30 packages in 2s
+4 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+PS C:\Users\SC9-406-35\Desktop\full_project\backend> npm i
+npm ERR! code EJSONPARSE
+npm ERR! path C:\Users\SC9-406-35\Desktop\full_project\backend/package.json
+npm ERR! JSON.parse Expected ',' or '}' after property value in JSON at position 267 (line 14 column 4) while parsing near "...demon\": \"^3.1.9\"\n   \"@prisma/client\": \"^..."
+npm ERR! JSON.parse Failed to parse JSON data.
+npm ERR! JSON.parse Note: package.json must be actual JSON, not just JavaScript.
+
+npm ERR! A complete log of this run can be found in: C:\Users\SC9-406-35\AppData\Local\npm-cache\_logs\2025-02-22T02_51_10_058Z-debug-0.log
+PS C:\Users\SC9-406-35\Desktop\full_project\backend> npm i
+npm WARN deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm WARN deprecated npmlog@5.0.1: This package is no longer supported.
+npm WARN deprecated lodash.isequal@4.5.0: This package is deprecated. Use require('node:util').isDeepStrictEqual instead.
+npm WARN deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm WARN deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+npm WARN deprecated are-we-there-yet@2.0.0: This package is no longer supported.
+npm WARN deprecated glob@7.1.6: Glob versions prior to v9 are no longer supported
+npm WARN deprecated gauge@3.0.2: This package is no longer supported.
+
+
+19 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+PS C:\Users\SC9-406-35\Desktop\full_project\backend> npm i
+
+added 22 packages, and audited 203 packages in 2s
+
+23 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+PS C:\Users\SC9-406-35\Desktop\full_project\backend> npx prisma init
+
+  You can now open it in your favorite editor.
+
+Next steps:
+1. Set the DATABASE_URL in the .env file to point to your existing database. If your database has no tables yet, read https://pris.ly/d/getting-started        
+2. Set the provider of the datasource block in schema.prisma to match your database: postgresql, mysql, sqlite, sqlserver, mongodb or cockroachdb.
+3. Run prisma db pull to turn your database schema into a Prisma schema.
+4. Run prisma generate to generate the Prisma Client. You can then start querying your database.
+5. Tip: Explore how you can extend the ORM with scalable connection pooling, global caching, and real-time database events. Read: https://pris.ly/cli/beyond-orm
+
+More information in our documentation:
+https://pris.ly/d/getting-started
+
+PS C:\Users\SC9-406-35\Desktop\full_project\backend> npx prisma db pull
+Prisma schema loaded from prisma\schema.prisma
+Environment variables loaded from .env
+Datasource "db": MySQL database "ministore" at "localhost:3306"
+
+
+Run prisma generate to generate Prisma Client.
+
+┌─────────────────────────────────────────────────────────┐
+│  Update available 5.22.0 -> 6.4.1                       │
+│                                                         │
+│  This is a major update - please follow the guide at    │
+│  https://pris.ly/d/major-version-upgrade                │
+│                                                         │
+│  Run the following to update                            │
+│    npm i --save-dev prisma@latest                       │
+└─────────────────────────────────────────────────────────┘
+PS C:\Users\SC9-406-35\Desktop\full_project\backend> npx prisma generate
+Environment variables loaded from .env
+Prisma schema loaded from prisma\schema.prisma
+
+✔ Generated Prisma Client (v5.22.0) to .\node_modules\@prisma\client in 91ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+Tip: Curious about the SQL queries Prisma ORM generates? Optimize helps you enhance your visibility: https://pris.ly/tip-2-optimize
+
+PS C:\Users\SC9-406-35\Desktop\full_project\backend> npx prisma migrate dev --name update_customers_schema
+Environment variables loaded from .env
+Prisma schema loaded from prisma\schema.prisma
+Datasource "db": MySQL database "ministore" at "localhost:3306"
+
+
+Error: Prisma schema validation - (validate wasm)
+Error code: P1012
+error: Error validating field `customers` in model `orders`: The relation field `customers` on model `orders` is missing an opposite relation field on the model `customers`. Either run `prisma format` or add it manually.
+   | 
+37 |   orderdetail  orderdetail[]
+38 |   customers    customers            @relation(fields: [customer_id], references: [customer_id], onDelete: NoAction, onUpdate: NoAction, map: "orders_ibfk_1")
+39 |   payments     payments[]
+   | 
+
+Validation Error Count: 1
+[Context: validate]
+
+Prisma CLI Version : 5.22.0
+PS C:\Users\SC9-406-35\Desktop\full_project\backend> npx prisma migrate dev --name update_customers_schema
+Environment variables loaded from .env
+Prisma schema loaded from prisma\schema.prisma
+Datasource "db": MySQL database "ministore" at "localhost:3306"
+
+Drift detected: Your database schema is not in sync with your migration history.
+
+The following is a summary of the differences between the expected database schema given your migrations files, and the actual schema of the database.    
+
+It should be understood as the set of changes to get from the expected schema to the actual schema.
+
+If you are running this the first time on an existing database, please make sure to read this documentation page:
+https://www.prisma.io/docs/guides/database/developing-with-prisma-migrate/troubleshooting-development
+
+[+] Added tables
+  - customers
+  - orderdetail
+  - orders
+  - payments
+  - products
+  - users
+
+[*] Changed the `orderdetail` table
+  [+] Added foreign key on columns (order_id)
+  [+] Added foreign key on columns (product_id)
+
+[*] Changed the `orders` table
+  [+] Added foreign key on columns (customer_id)
+
+[*] Changed the `payments` table
+  [+] Added foreign key on columns (order_id)
+
+√ We need to reset the MySQL database "ministore" at "localhost:3306"
+Do you want to continue? All data will be lost. ... yes
+
+Applying migration `20250222032732_update_customers_schema`
+
+The following migration(s) have been created and applied from new schema changes:
+
+migrations/
+  └─ 20250222032732_update_customers_schema/
+    └─ migration.sql
+
+Your database is now in sync with your schema.
+
+✔ Generated Prisma Client (v5.22.0) to .\node_modules\@prisma\client in 91ms
+
+
+PS C:\Users\SC9-406-35\Desktop\full_project\backend> npx prisma migrate dev --name update_customers_schema
